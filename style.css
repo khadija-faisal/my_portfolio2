@@ -1,0 +1,887 @@
+html {
+  overflow-x: hidden;
+  font-size: 60%;
+}
+body {
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  transition-behavior: smooth;
+  border: none;
+  list-style-type: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.hero {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(12, 3, 51, 0.377), rgba(12, 3, 51, 0.3));
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.backvideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+@media (min-aspect-ratio: 9/16) {
+}
+.backvideo {
+  width: auto;
+  height: 100%;
+}
+@media (min-aspect-ratio: 16/9) {
+  .backvideo {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  .backvideo {
+    width: auto;
+    height: 100%;
+    margin-inline-start: 0em;
+  }
+}
+.sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  background-color: rgba(68, 72, 168, 0.306);
+  width: 90px;
+  transition: width 0.2s linear;
+  overflow: hidden;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+@media (max-width: 750px) {
+  .sidebar {
+    visibility: hidden;
+  }
+}
+.logo {
+  text-align: center;
+  display: flex;
+  transition: all 0.5 ease;
+  margin: 10px 0 0 10px;
+}
+.logo img {
+  width: 45px;
+  height: 45px;
+  transition: 0.3s ease;
+}
+.logo img:hover {
+  transform: scale(1.1);
+}
+.logo span {
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+a {
+  position: relative;
+  color: rgb(239, 228, 228);
+  font-size: 17px;
+  font-weight: bold;
+  display: table;
+  width: 300px;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+/* nav icons */
+.fas {
+  position: relative;
+  width: 70px;
+  height: 40px;
+  top: 14px;
+  font-size: 20px;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.nav-item {
+  position: relative;
+  top: 12px;
+  margin-left: 15px;
+}
+
+.sidebar a:hover {
+  background-color: #cfd6e690;
+  color: rgb(45, 46, 61);
+}
+.sidebar:hover {
+  width: 250px;
+  transition: all 0.5s ease;
+}
+
+.side-menu {
+  height: 400px;
+  width: 200px;
+  /* position: absolute; */
+  background-color: rgba(3, 4, 43, 0.858);
+  transition: 0.5s ease;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transform: translateY(-400px);
+  position: fixed;
+}
+
+.name2 {
+  color: rgb(239, 228, 228);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px 0;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.side-menu a {
+  position: relative;
+  color: rgb(239, 228, 228);
+  font-size: 17px;
+  font-weight: bold;
+  display: table;
+  padding-top: 5px;
+}
+.side-menu .fas {
+  position: relative;
+  width: 50px;
+  height: 40px;
+  top: 10px;
+  font-size: 15px;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.side-menu a:hover {
+  background-color: #cfd6e690;
+  color: rgb(45, 46, 61);
+}
+.label input {
+  display: none;
+  visibility: hidden;
+}
+.toggle {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 20px;
+  right: 15px;
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: rgb(239, 228, 228);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+}
+.toggle .common {
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  background-color: rgb(16, 15, 40);
+  border-radius: 50px;
+  transition: 0.3s ease;
+}
+.toggle .topline {
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.toggle .midline {
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.toggle .bottomline {
+  top: 63%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+input:checked ~ .toggle .topline {
+  left: 2px;
+  top: 14px;
+  width: 25px;
+  transform: rotate(45deg);
+}
+input:checked ~ .toggle .bottomline {
+  left: 2px;
+  top: 14px;
+  width: 25px;
+  transform: rotate(-45deg);
+}
+input:checked ~ .toggle .midline {
+  opacity: 0;
+  transform: translateX(20px);
+}
+input:checked ~ .side-menu {
+  transform: translateY(0);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.toggle:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 0 25px rgb(239, 228, 228);
+}
+section {
+  min-height: 100vh;
+  padding: 10rem 11% 10rem;
+}
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15rem;
+}
+.homecontent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.home h1 {
+  font-size: 4rem;
+  color: rgb(239, 228, 228);
+}
+.span {
+  color: rgb(239, 228, 228);
+}
+.homecontent h3 {
+  font-family: "Playfair Display";
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  font-size: 3.5rem;
+}
+.homecontent h1 {
+  font-family: "Playfair Display";
+  font-size: 7rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  line-height: 1;
+}
+.homecontent p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.8;
+  max-width: 1000px;
+  color: rgb(239, 228, 228);
+}
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: transparent;
+  border: 2px solid rgb(239, 228, 228);
+  font-size: 2.1rem;
+  border-radius: 50%;
+  color: rgb(239, 228, 228);
+  margin: 3rem 1.5rem 3rem 0;
+  transition: 0.3s ease;
+}
+.social-icons a:hover {
+  color: rgb(212, 25, 78);
+  transform: scale(1.3) translateY(-5px);
+  box-shadow: 0 0 20px rgb(239, 228, 228);
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2.8rem;
+  box-shadow: 0 0 20px rgb(239, 228, 228);
+  border-radius: 4rem;
+  font-size: 1.5rem;
+  color: rgb(239, 228, 228);
+  border: 2px solid transparent;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(239, 228, 228, 0.662);
+  color: rgb(26, 5, 89);
+  background-color: rgb(239, 228, 228);
+}
+
+.btn-group {
+  display: flex;
+  align-items: center;
+}
+.btn a:nth-of-type(2) {
+  background-color: rgb(26, 5, 89);
+  color: rgb(239, 228, 228);
+  border: 2px solid rgb(239, 228, 228);
+  box-shadow: 0 0 25px transparent;
+}
+
+.textanime1 {
+  font-size: 34px;
+  font-weight: 700;
+  min-width: 280px;
+  font-family: "Playfair Display";
+  color: rgb(239, 228, 228);
+}
+.textanime1 span {
+  position: relative;
+  align-items: center;
+}
+.textanime1 span::before {
+  content: "Graphic Desginer";
+  color: rgb(239, 228, 228);
+  animation: words 20s infinite;
+}
+.textanime1 span::after {
+  content: "";
+  background-color: rgba(1, 13, 35, 0.228);
+  position: absolute;
+  width: calc(100% + 8px);
+  height: 100%;
+  border-left: 3px solid rgb(26, 5, 89);
+  right: -8px;
+  animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
+}
+@keyframes cursor {
+  to {
+    border-left: 2px solid rgb(239, 228, 228);
+  }
+}
+@keyframes words {
+  0%,
+  20% {
+    content: "Frontend Developer";
+  }
+  21%,
+  40% {
+    content: "Creative Designer";
+  }
+  41%,
+  60% {
+    content: "Teacher";
+  }
+  61%,
+  80% {
+    content: "Graphics Designer";
+  }
+  81%,
+  100% {
+    content: "Frontend Developer";
+  }
+}
+@keyframes typing {
+  10%,
+  15%,
+  30%,
+  35%,
+  50%,
+  55%,
+  70%,
+  75%,
+  90%,
+  95% {
+    width: 0;
+  }
+  5%,
+  20%,
+  25%,
+  40%,
+  45%,
+  60%,
+  80%,
+  85% {
+    width: calc(100% + 8px);
+  }
+}
+.part {
+  width: 100vw;
+  height: 45px;
+  background-color: rgba(0, 0, 0, 0.989);
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(/back3.jpg);
+  background-size: cover;
+  transition: 0.3s linear;
+}
+.about-img {
+  position: relative;
+  width: 30vw;
+  border-radius: 10%;
+  box-shadow: 0 0 25px rgb(0, 0, 6);
+  top: 1rem;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+.about-img img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px rgba(0, 0, 6, 0.7);
+}
+@media (max-width: 700px) {
+  .about {
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+    margin: 0;
+    height: 100vh;
+  }
+}
+
+.about-img img {
+  position: relative;
+}
+
+.about .about-me {
+  text-align: start;
+  font-size: 2.4rem;
+  margin: 5rem 0;
+  padding-left: 25px;
+  padding-top: 30px;
+}
+
+.about-content h4 {
+  line-height: 1.3;
+  color: rgb(239, 228, 228);
+  margin-top: 30px;
+  font-family: "Playfair Display";
+}
+.about-content h3 {
+  font-size: 2.6rem;
+  padding-left: 22px;
+}
+.about-content p {
+  align-self: center;
+  text-align: left;
+  line-height: 2.3rem;
+  font-size: 1.6rem;
+  margin: 2rem 0 3rem;
+  padding-left: 27px;
+  color: rgb(239, 228, 228);
+
+  font-family: "Raleway", sans-serif;
+}
+.about .about-me {
+  margin: 0;
+}
+.about-content .textanime1 span::before {
+  content: "Graphic Desginer";
+  color: rgb(239, 228, 228);
+  animation: words 20s infinite;
+}
+.about-content .textanime1 span::after {
+  content: "";
+  /* background-color: rgba(1, 13, 35, 0.228); */
+  position: absolute;
+  width: calc(100% + 5px);
+  height: 100%;
+  border-left: 3px solid rgb(26, 5, 89);
+  right: -8px;
+  animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
+}
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.984);
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(16, 3, 50);
+  width: 50px;
+}
+.part2 {
+  width: 100vw;
+  height: 45px;
+  background-color: rgba(0, 0, 0, 0.989);
+}
+
+.projects {
+  background-color: rgb(8, 5, 5);
+  min-height: 100vh;
+  padding-left: 0;
+  padding-right: 0;
+}
+.part2 {
+  width: 100vw;
+  height: 45px;
+  background-color: rgba(0, 0, 0, 0.989);
+}
+.slider {
+  width: 100%;
+  border: 3px solid rgb(255, 254, 254);
+  height: var(--height);
+  overflow: hidden;
+}
+.slider .list {
+  display: flex;
+  width: 100%;
+  min-width: calc(var(--width) * var(--quantity));
+  position: relative;
+}
+
+.slider .list .item {
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  left: 100%;
+  animation: autoRun 10s linear infinite;
+  transition: filter 0.5s;
+  animation-delay: calc(
+    (10s / var(--quantity)) * (var(--position) - 1)
+  ) !important;
+}
+.slider .list .item img {
+  width: 100%;
+}
+@keyframes autoRun {
+  from {
+    left: 100%;
+  }
+  to {
+    left: calc(var(--width) * -1);
+  }
+}
+.slider:hover .item {
+  animation-play-state: paused !important;
+  filter: grayscale(1);
+}
+.slider .item:hover {
+  filter: grayscale(0);
+}
+
+.slider[reverse="true"] .item {
+  animation: reversePlay 10s linear infinite;
+}
+@keyframes reversePlay {
+  from {
+    left: calc(var(--width) * -1);
+  }
+  to {
+    left: 100%;
+  }
+}
+.headproject {
+  font-family: "Playfair Display";
+  text-align: center;
+  font-size: 7rem;
+  font-weight: 700;
+  margin-bottom: 80px;
+  line-height: 1;
+  color: rgb(239, 228, 228);
+}
+.headproject2 {
+  font-family: "Playfair Display";
+  text-align: center;
+  font-size: 7rem;
+  font-weight: 700;
+  padding-bottom: 80px;
+  line-height: 1;
+  color: rgb(239, 228, 228);
+}
+.projectcli {
+  background-image: url(/back3.jpg);
+  background-size: contain;
+}
+
+.project-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  margin: 5rem 0;
+  gap: 3rem;
+  row-gap: 5rem;
+}
+.project-card {
+  height: 450px;
+  max-width: 450px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(30px);
+  border: 2px solid rgb(239, 228, 228);
+  border-radius: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgb(239, 228, 228);
+  transition: 0.3s ease;
+}
+.project-card:hover {
+  box-shadow: 0 0 25px rgb(239, 228, 228), 0 0 50px rgb(239, 228, 228);
+  transform: scale(1.02);
+}
+.project-card a img {
+  max-width: 18vw;
+  border-radius: 10%;
+  object-fit: cover;
+}
+.project-card h3 {
+  font-size: 3rem;
+  color: rgb(239, 228, 228);
+  font-family: "Raleway", sans-serif;
+}
+.project-card p {
+  font-size: 1.4rem;
+  color: rgb(239, 228, 228);
+  line-height: 2rem;
+  font-family: "Raleway", sans-serif;
+}
+@media (max-width: 1050px) {
+  .project-box {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.skills{
+   
+  background-color: rgb(4, 7, 36);
+  
+} 
+.skills1{
+  background-color: rgb(4, 7, 36);
+  height: 100vh;
+  flex-wrap: wrap;
+  display: flex;
+   align-items: center;
+   justify-content: center; 
+   flex-direction: row;
+  
+}
+
+ 
+
+
+
+.round{
+  width: 160px;
+  height: 160px;
+  margin-left: 30px;
+  position: relative;
+ 
+ 
+}
+
+.outer {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow: 6px 6px 10px -1px rgba(138, 137, 137, 0.272),
+    -6px -6px 10px -1px rgba(0, 0, 0, 0.7);
+}
+.inner {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 4px 4px 6px -1px rgba(169, 167, 167, 0.2),
+    inset -4px -4px 6px -1px rgba(0, 0, 0, 0.7),
+    -0.5px -0.5px 0px rgba(0, 0, 0, 1),
+   0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+  0px 12px 10px -10px rgba(172, 169, 169, 0.05);
+}
+#number {
+  font-size: 2rem;
+  color: #e4e4e4;
+}
+circle {
+  fill: none;
+  stroke: url(#GradientColor);
+  stroke-width: 20px;
+  stroke-dasharray: 472;
+  stroke-dashoffset: 472;
+  animation: anim 4s linear infinite;
+}
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@keyframes anim {
+  100% {
+    stroke-dashoffset: 165;
+  }
+}
+.skillname {
+  font-size: 2rem;
+padding-left: 10px;
+padding-bottom: 80px;
+  color: rgb(239, 228, 228);
+ text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+.mainheading{
+  font-family: "Playfair Display";
+  text-align: center;
+  font-size: 7rem;
+  font-weight: 700;
+  padding-bottom: 80px;
+  line-height: 1;
+  color: rgb(239, 228, 228);
+}
+@media (max-width: 850px){
+ .skills1{
+    height: 100%;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-right: 40px;
+  }
+  .skillname{
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+  }
+}
+
+.contact{
+  background-color: black;
+}
+
+.input-group{
+  color: black;
+}
+.contacthead{
+  font-family: "Playfair Display";
+  text-align: center;
+  font-size: 6rem;
+  font-weight: 600;
+  padding-bottom: 80px;
+  line-height: 1;
+  color: rgb(239, 228, 228);
+}
+.contact{
+  background-color: rgb(4, 7, 36);
+  /* background-image: url(/back3.jpg);
+  background-size: contain; */
+
+}
+.contact form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin: 5rem auto;
+  text-align: center;
+
+}
+.contact form .input-box{
+  display: flex;
+  justify-content: center;
+   flex-wrap: wrap;
+
+}
+.contact form .input-box input,
+.contact form textarea{
+  width: 100%; 
+  padding: 2.5rem;
+  font-size: 1.5rem;
+  color: rgb(239, 228, 228);
+  background-color: rgb(24, 24, 25);
+  border-radius: 2rem;
+  border: 1px solid rgb(239, 228, 228);
+  margin: 1.5rem 0;
+  box-shadow: 0 0 40px rgba(158, 149, 149, 0.183);
+  resize: none;
+}
+.contact form textarea{
+  padding-bottom: 90px ;
+}
+.contact form .btn{
+  margin-top: 2rem;
+  color: rgb(4, 7, 36);
+
+}
+.footer{
+   position: relative;
+   bottom: 0;
+   width: 100%;
+   padding: 40px 0;
+   background-color: rgb(16, 16, 18);
+
+}
+.footer .social {
+   text-align: center;
+   padding-bottom: 25px;
+   color: rgb(239, 228, 228);
+
+}
+.footer .social a{
+  font-size: 25px;
+   color:rgb(239, 228, 228);
+  border: 2px soild rgb(239, 228, 228);
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 10px;
+  transition:  0.3s ease;
+
+}
+.footer .social a:hover{
+  
+   color: rgb(212, 25, 78);
+   transform: scale(1.3) translateY(-5px);
+  
+
+}
+.footer ul {
+  margin-top: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom:  0;
+  text-align: center;
+}
+.footer ul li a{
+   color: rgb(255, 255, 255);
+   border-bottom: 3px soild transparent;
+   transition:  0.3s ease;
+
+}
+.footer ul li a:hover{
+  border-bottom: 3px solid rgb(239, 228, 228);
+}
+.footer ul li{
+ display: inline-block;
+ padding: 0 15px;
+
+}
+.footer .copyright{
+  margin-top: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: rgb(239, 228, 228);
+
+}
+@media(max-width: 550px){
+.contact form{
+  flex-direction: column;
+}
+.contacthead{
+  font-size: 4rem;
+}
+}
